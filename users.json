@@ -1,0 +1,10 @@
+{
+  "123456789": {
+    "role": "admin",
+    "status": "approved"
+  },
+  "987654321": {
+    "role": "specialAdmin",
+    "status": "approved"
+  }
+}

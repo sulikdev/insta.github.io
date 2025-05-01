@@ -1,0 +1,18 @@
+{
+  "users": {
+    "-4785764272": {
+      "id": "-4785764272",
+      "name": "ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ",
+      "link": "https://YOUR_SITE.com/index.html?id=-4785764272",
+      "role": "user",
+      "approved": false
+    },
+    "5154775313": {
+      "id": "5154775313",
+      "name": "ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ",
+      "link": "https://YOUR_SITE.com/index.html?id=5154775313",
+      "role": "user",
+      "approved": false
+    }
+  }
+}
